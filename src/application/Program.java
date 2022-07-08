@@ -5,6 +5,8 @@
  */
 package application;
 
+import view.TelaInicial;
+
 /**
  *
  * @author felipe_apio-souza
@@ -15,8 +17,8 @@ public class Program {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Ola");
-        //ademar
+        TelaInicial tl = new TelaInicial();
+        tl.setVisible(true);
     }
     
 }
