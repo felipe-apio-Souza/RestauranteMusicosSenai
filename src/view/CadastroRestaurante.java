@@ -5,6 +5,10 @@
  */
 package view;
 
+import application.Artista;
+import application.Restaurante;
+import dao.Conexao;
+
 /**
  *
  * @author ademar_dadam-neto
@@ -74,6 +78,11 @@ public class CadastroRestaurante extends javax.swing.JFrame {
         jLabel5.setText("Cadastro de Restaurante");
 
         cadastrar.setText("Cadastrar");
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel7.setText("Estado:");
@@ -241,6 +250,18 @@ public class CadastroRestaurante extends javax.swing.JFrame {
         tl.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+        Conexao c = new Conexao();
+        Restaurante r = new Restaurante(cnpj.getText().toString(),nome.getText().toString(), numeroTelf.getText().toString(), 
+                email.getText().toString(), estado.getText().toString(), 
+                cidade.getText().toString(), bairro.getText().toString(), numRestaurante.getText().toString(), 
+                cep.getText().toString(), senha.getText().toString());
+        c.salvarRestaurante(r);
+        TelaInicial tl = new TelaInicial();
+        tl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cadastrarActionPerformed
 
     /**
      * @param args the command line arguments

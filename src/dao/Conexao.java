@@ -6,6 +6,7 @@
 package dao;
 
 import application.Artista;
+import application.Restaurante;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -94,5 +95,46 @@ public class Conexao {
         deletaArtista(artista.getCpf());
         salvarArtista(artista);
     }
+    
+    //Restaurante
+    public static void salvarRestaurante (Restaurante restaurante){
+        try{
+            Connection con = Conexao.getConnection();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO restaurante (cnpj,nome, numero, email,estado, cidade, bairro, numero_restaurante, cep, senha) values(?, ?, ? , ?, ?, ?, ? , ? , ?, ?)");
+            ps.setString(1, restaurante.getCnpj());
+            ps.setString(2, restaurante.getNome());
+            ps.setString(3, restaurante.getNumero());        
+            ps.setString(4, restaurante.getEmail());
+            ps.setString(5, restaurante.getEstado());
+            ps.setString(6, restaurante.getCidade());
+            ps.setString(7, restaurante.getBairro());
+            ps.setString(8, restaurante.getNumero_restaurante());
+            ps.setString(9, restaurante.getCep()); 
+            ps.setString(10, restaurante.getSenha());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void deletaRestaurante(String cnpj){
+        try{
+            Connection con = Conexao.getConnection();
+            PreparedStatement ps = con.prepareStatement("Delete FROM restaurante WHERE cnpj = ?");
+            ps.setString(1, cnpj);
+            ps.executeUpdate();
+
+
+            }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void atualizaRestaurante (Restaurante restaurante){
+        deletaRestaurante(restaurante.getCnpj());
+        salvarRestaurante(restaurante);
+    }
+    
 
 }
