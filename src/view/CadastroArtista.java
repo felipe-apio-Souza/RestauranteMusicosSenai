@@ -70,7 +70,7 @@ public class CadastroArtista extends javax.swing.JFrame {
         jLabel4.setText("E-mail:");
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
-        jLabel5.setText("Cadastro de Restaurante");
+        jLabel5.setText("Cadastro de Músicos");
 
         cadastrar.setText("Cadastrar");
 
