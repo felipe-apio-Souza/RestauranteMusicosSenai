@@ -5,8 +5,10 @@
  */
 package dao;
 
+import application.Artista;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -52,13 +54,22 @@ public class Conexao {
         }
     }
  
-    /*
-    public static void salvar (Usuario usuario){
+    
+    public static void salvarArtista (Artista artista){
         try{
-            Connection con = Banco.getConnection();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO usuario (id, nome) values(?, ?)");
-            ps.setInt(1, usuario.getId());
-            ps.setString(2, usuario.getNome());
+            Connection con = Conexao.getConnection();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO musicos (cpf,nome, numero, email, categoria, estado, cidade, bairro, numero_casa, cep, senha) values(?, ?, ? , ? , ? , ? , ?, ? , ? , ? , ?)");
+            ps.setString(1, artista.getCpf());
+            ps.setString(2, artista.getNome());
+            ps.setString(3, artista.getNumero());        
+            ps.setString(4, artista.getEmail());
+            ps.setString(5, artista.getCategoria());
+            ps.setString(6, artista.getEstado());
+            ps.setString(7, artista.getCidade());
+            ps.setString(8, artista.getBairro());
+            ps.setString(9, artista.getNumero_casa());
+            ps.setString(10, artista.getCep()); 
+            ps.setString(11, artista.getSenha());
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,11 +77,11 @@ public class Conexao {
     }
 
 
-    public static void deleta(int id){
+    public static void deletaArtista(String cpf){
         try{
-            Connection con = Banco.getConnection();
-            PreparedStatement ps = con.prepareStatement("Delete FROM usuario WHERE id = ?");
-            ps.setInt(1, id);
+            Connection con = Conexao.getConnection();
+            PreparedStatement ps = con.prepareStatement("Delete FROM artista WHERE cpf = ?");
+            ps.setString(1, cpf);
             ps.executeUpdate();
 
 
@@ -79,9 +90,9 @@ public class Conexao {
             e.printStackTrace();
         }
     }
-    public static void atualizaBanco(Usuario usuario){
-        deleta(usuario.getId());
-        salvar(usuario);
+    public static void atualizaArtista (Artista artista){
+        deletaArtista(artista.getCpf());
+        salvarArtista(artista);
     }
-*/
+
 }

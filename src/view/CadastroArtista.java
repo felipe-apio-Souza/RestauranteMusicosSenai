@@ -5,6 +5,9 @@
  */
 package view;
 
+import application.Artista;
+import dao.Conexao;
+
 /**
  *
  * @author ademar_dadam-neto
@@ -44,7 +47,7 @@ public class CadastroArtista extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         bairro = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        numRestaurante = new javax.swing.JTextField();
+        numCasa = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         cep = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -171,7 +174,7 @@ public class CadastroArtista extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(numRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(numCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(senha, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(confirmSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -220,7 +223,7 @@ public class CadastroArtista extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(numRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -259,7 +262,15 @@ public class CadastroArtista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
-        // TODO add your handling code here:
+        Conexao c = new Conexao();
+        Artista a = new Artista(cpf.getText().toString(),nome.getText().toString(), numeroTelf.getText().toString(), 
+                email.getText().toString(), categoria.getText().toString(), estado.getText().toString(), 
+                cidade.getText().toString(), bairro.getText().toString(), numCasa.getText().toString(), 
+                cep.getText().toString(), senha.getText().toString());
+        c.salvarArtista(a);
+        TelaInicial tl = new TelaInicial();
+        tl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_cadastrarActionPerformed
 
     /**
@@ -322,8 +333,12 @@ public class CadastroArtista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField nome;
-    private javax.swing.JTextField numRestaurante;
+    private javax.swing.JTextField numCasa;
     private javax.swing.JTextField numeroTelf;
     private javax.swing.JTextField senha;
     // End of variables declaration//GEN-END:variables
 }
+/* private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        TelaInicial tl = new TelaInicial();
+        tl.setVisible(true);
+        this.setVisible(false);*/
