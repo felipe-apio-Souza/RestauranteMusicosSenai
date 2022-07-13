@@ -31,7 +31,7 @@ public class Conexao {
                 String port = "5432";
                 String database = "senaiRestaurantesMusicos";
                 String user = "postgres";
-                String pass = "POSTGRES";//digitar a senha do seu banco
+                String pass = "postgres";//digitar a senha do seu banco
                 //String url = "jdbc:mysql://"+host+":"+port+"/"+database; //para mysql
                 String url = "jdbc:postgresql://"+host+":"+port+"/"+database;//para postgresql
                 connection = DriverManager.getConnection(url, user, pass);                

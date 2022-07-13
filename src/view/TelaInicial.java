@@ -167,6 +167,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 Restaurante restaurante = rs.get(i);
                 Home home = new Home();
                 this.setVisible(false);
+                home.setVisible(true);
             }
             
             }
@@ -178,6 +179,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 Artista artista = a.get(i);
                 Home home = new Home();
                 this.setVisible(false);
+                 home.setVisible(true);
             }
             
             }
