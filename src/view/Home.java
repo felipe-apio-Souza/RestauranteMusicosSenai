@@ -5,6 +5,11 @@
  */
 package view;
 
+import application.Artista;
+import application.Restaurante;
+import dao.Conexao;
+import java.sql.SQLException;
+
 /**
  *
  * @author eduardo_vitorio
@@ -27,26 +32,208 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pesquisar = new javax.swing.JTextPane();
+        search_bt = new javax.swing.JButton();
+        estado_bt = new javax.swing.JButton();
+        cidade_bt = new javax.swing.JButton();
+        categoria_bt = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        nome = new javax.swing.JLabel();
+        estado = new javax.swing.JLabel();
+        cidade = new javax.swing.JLabel();
+        categoria = new javax.swing.JLabel();
+        perfil_bt = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(217, 217, 217));
+
+        jScrollPane1.setViewportView(pesquisar);
+
+        search_bt.setText("pesquisar");
+        search_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_btActionPerformed(evt);
+            }
+        });
+
+        estado_bt.setBackground(new java.awt.Color(255, 255, 255));
+        estado_bt.setText("Estado");
+
+        cidade_bt.setBackground(new java.awt.Color(255, 255, 255));
+        cidade_bt.setText("cidade");
+        cidade_bt.setToolTipText("");
+        cidade_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cidade_btActionPerformed(evt);
+            }
+        });
+
+        categoria_bt.setBackground(new java.awt.Color(255, 255, 255));
+        categoria_bt.setText("categoria");
+
+        jButton3.setText("perfil");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(estado_bt)
+                        .addGap(55, 55, 55)
+                        .addComponent(cidade_bt)
+                        .addGap(58, 58, 58)
+                        .addComponent(categoria_bt))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(search_bt)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(24, 24, 24))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(search_bt)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(estado_bt)
+                            .addComponent(cidade_bt)
+                            .addComponent(categoria_bt))))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+
+        nome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nome.setForeground(new java.awt.Color(255, 255, 255));
+        nome.setText("Nome");
+
+        estado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        estado.setForeground(new java.awt.Color(255, 255, 255));
+        estado.setText("Estado");
+
+        cidade.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cidade.setForeground(new java.awt.Color(255, 255, 255));
+        cidade.setText("Cidade");
+
+        categoria.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        categoria.setForeground(new java.awt.Color(255, 255, 255));
+        categoria.setText("categoria");
+
+        perfil_bt.setText("perfil");
+        perfil_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perfil_btActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(categoria)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(nome)
+                        .addGap(31, 31, 31)
+                        .addComponent(estado)
+                        .addGap(18, 18, 18)
+                        .addComponent(cidade)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addComponent(perfil_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nome)
+                    .addComponent(estado)
+                    .addComponent(cidade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(categoria)
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(perfil_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 266, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void search_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_btActionPerformed
+
+    private void cidade_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidade_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cidade_btActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void perfil_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_perfil_btActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -76,8 +263,26 @@ public class Home extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel categoria;
+    private javax.swing.JButton categoria_bt;
+    private javax.swing.JLabel cidade;
+    private javax.swing.JButton cidade_bt;
+    private javax.swing.JLabel estado;
+    private javax.swing.JButton estado_bt;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel nome;
+    private javax.swing.JButton perfil_bt;
+    private javax.swing.JTextPane pesquisar;
+    private javax.swing.JButton search_bt;
     // End of variables declaration//GEN-END:variables
 }

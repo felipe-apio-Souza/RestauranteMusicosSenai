@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
+    public static Integer identificador;
     /**
      * Creates new form TelaInicial
      */
@@ -168,6 +169,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 Home home = new Home();
                 this.setVisible(false);
                 home.setVisible(true);
+                //restaurante
+                identificador = 2;
             }
             
             }
@@ -180,6 +183,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 Home home = new Home();
                 this.setVisible(false);
                  home.setVisible(true);
+                 //artista
+                 identificador = 1;
             }
             
             }
