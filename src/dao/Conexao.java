@@ -10,7 +10,10 @@ import application.Restaurante;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -28,7 +31,7 @@ public class Conexao {
                 String port = "5432";
                 String database = "senaiRestaurantesMusicos";
                 String user = "postgres";
-                String pass = "postgres";//digitar a senha do seu banco
+                String pass = "POSTGRES";//digitar a senha do seu banco
                 //String url = "jdbc:mysql://"+host+":"+port+"/"+database; //para mysql
                 String url = "jdbc:postgresql://"+host+":"+port+"/"+database;//para postgresql
                 connection = DriverManager.getConnection(url, user, pass);                
@@ -136,5 +139,49 @@ public class Conexao {
         salvarRestaurante(restaurante);
     }
     
+    public static List<Restaurante> listRestaurante() throws SQLException{
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement("Select * FROM restaurante");
+        ResultSet rs = ps.executeQuery();
+        List<Restaurante> res = new ArrayList<>();
+        while (rs.next()) {            
+            Restaurante restaurante = new Restaurante();
+            restaurante.setCnpj(rs.getString("cnpj"));
+            restaurante.setCep(rs.getString("cep"));
+            restaurante.setBairro(rs.getString("bairro"));
+            restaurante.setCidade(rs.getString("cidade"));
+            restaurante.setEmail(rs.getString("email"));
+            restaurante.setEstado(rs.getString("estado"));
+            restaurante.setNome(rs.getString("nome"));
+            restaurante.setNumero(rs.getString("numero"));
+            restaurante.setNumero_restaurante(rs.getString("numero_restaurante"));
+            restaurante.setSenha(rs.getString("senha"));
+            res.add(restaurante);
+        }
+        return res;
+    }
+    
+    public static List<Artista> listArtista() throws SQLException{
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement("Select * FROM musicos");
+        ResultSet rs = ps.executeQuery();
+        List<Artista> res = new ArrayList<>();
+        while (rs.next()) {            
+            Artista artista = new Artista();
+            artista.setCpf(rs.getString("cpf"));
+            artista.setCep(rs.getString("cep"));
+            artista.setBairro(rs.getString("bairro"));
+            artista.setCidade(rs.getString("cidade"));
+            artista.setEmail(rs.getString("email"));
+            artista.setEstado(rs.getString("estado"));
+            artista.setNome(rs.getString("nome"));
+            artista.setNumero(rs.getString("numero"));
+            artista.setNumero_casa(rs.getString("numero_casa"));
+            artista.setSenha(rs.getString("senha"));
+            artista.setCategoria(rs.getString("categoria"));
+            res.add(artista);
+        }
+        return res;
+    }
 
 }

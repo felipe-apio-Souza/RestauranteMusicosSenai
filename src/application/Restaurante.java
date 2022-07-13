@@ -33,6 +33,10 @@ public class Restaurante {
         this.cep = cep;
         this.senha = senha;
     }
+    
+    public Restaurante() {
+        
+    }
 
     public String getCnpj() {
         return cnpj;

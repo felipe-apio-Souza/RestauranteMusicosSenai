@@ -29,6 +29,10 @@ public class Artista {
         this.senha = senha;
     }
 
+    public Artista() {
+    }
+
+    
   
 
     public String getCpf() {

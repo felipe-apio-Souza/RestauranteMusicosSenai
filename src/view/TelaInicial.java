@@ -5,6 +5,14 @@
  */
 package view;
 
+import application.Artista;
+import application.Restaurante;
+import dao.Conexao;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ademar_dadam-neto
@@ -46,6 +54,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1.setText("E-mail:");
 
         email.setToolTipText("");
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Senha:");
 
@@ -138,6 +151,38 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarBtActionPerformed
+       
+        List<Restaurante> rs = null;
+        List<Artista> a = null;
+        try {
+            rs = Conexao.listRestaurante();
+            a = Conexao.listArtista();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(rs != null){
+            for (int i = 0; i < rs.size(); i++){
+            if(email.getText().toString().equals(rs.get(i).getEmail()) && senha.getText().toString().equals(rs.get(i).getSenha())){
+                Restaurante restaurante = rs.get(i);
+                Home home = new Home();
+                this.setVisible(false);
+            }
+            
+            }
+        }   
+        
+        if(a != null){
+            for (int i = 0; i < a.size(); i++){
+            if(email.getText().toString().equals(a.get(i).getEmail()) && senha.getText().toString().equals(a.get(i).getSenha())){
+                Artista artista = a.get(i);
+                Home home = new Home();
+                this.setVisible(false);
+            }
+            
+            }
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_entrarBtActionPerformed
 
@@ -152,6 +197,10 @@ public class TelaInicial extends javax.swing.JFrame {
         cr.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_restauranteBtActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments
